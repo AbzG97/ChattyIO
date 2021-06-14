@@ -2,6 +2,7 @@ import firebase from "firebase";
 import "./firebase";
 import React from 'react'
 import Channel from "./Channel";
+import MainConents from "./MainConents";
 import {Switch, Route, Link} from 'react-router-dom';
 import Login from "./Login";
 import Signup from "./Signup";
@@ -38,12 +39,14 @@ const App = () => {
       <Title user={user}/>
       <hr></hr>
       <Switch>
-        <PrivateRoute path="/" exact render={(props) => <Channel {...props} user={user}/> }/>
+        
 
         <Route path="/login" render={(props) => <Login  {...props} email={email} setEmail={setEmail} password={password} setPassword={setPassword}/>}/>
 
         <Route path="/signup" render={(props) => <Signup  {...props} email={email} setEmail={setEmail} password={password} 
         setPassword={setPassword} username={username} setUsername={setUsername}/>}/>
+
+        <PrivateRoute path="/" exact user={user} render={(props) => <MainConents {...props} user={user}/> }/>
 
         
 

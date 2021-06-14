@@ -2,11 +2,11 @@ import React from 'react'
 import {Redirect, Route} from 'react-router-dom'
 import firebase from 'firebase'
 
-const PrivateRoute = ({component: Component, ...rest}) => {
+const PrivateRoute = ({user, component: Component, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            firebase.auth().currentUser ? Component ? <Component {...props}/> :
-            rest.render(props) : <Redirect to="/login"/>
+            user ? Component ? <Component {...props}/> :
+            rest.render(props) : <Redirect to="/"/>
         )}/>
     )
 }
