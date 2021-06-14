@@ -47,8 +47,6 @@ function Channel({user}) {
     }
 
     return (
-
-        
         <div>
             <h2>Profile Data</h2>
             <p>{user.displayName}</p>
