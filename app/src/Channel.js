@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from 'firebase';
+import Message from './Message'
 
 
 function Channel({user}) {
@@ -8,6 +9,10 @@ function Channel({user}) {
     const [newMessageText, setNewMessageText] = React.useState();
     const db = firebase.firestore();
     const query = db.collection("messages").orderBy("createdAt").limit(100);
+
+    const signOut = async () => {
+        await firebase.auth().signOut();
+      }
 
     React.useEffect(() => {
         // receive realtime updates 
@@ -45,17 +50,17 @@ function Channel({user}) {
 
         
         <div>
+            <h2>Profile Data</h2>
+            <p>{user.displayName}</p>
             <h3>Messages in current room</h3>
+            <button onClick={signOut}>Sign out</button>
             <form onSubmit={postMsg}>
                 <input type="text" placeholder="Enter your message here" onChange={(e) => setNewMessageText(e.target.value)}/>
                 <input type="submit" value="post"/>
-
             </form>
             {messages ? (
                 messages.map((message) => (
-                    <div key={message.id}>
-                        {message.msg}
-                    </div>
+                    <Message message={message} key={message.id}/>
                 ))
             ) : (<h4>No messages in this room</h4>)}
 
