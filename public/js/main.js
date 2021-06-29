@@ -1,12 +1,22 @@
 const chatForm = document.querySelector("#chat-form");
-// console.log(chatForm);
+const chat_messages = document.querySelector(".chat-messages");
+const chatMessage = document.querySelector("#msg");
 const socket = io();
+
+// get username and room from url
+const {username, room} = Qs.parse(location.search, {
+    ignoreQueryPrefix: true
+});
+
+
+
+// join chat room
+socket.emit("join", {username, room});
 
 // get the message from server to be displayed in client
 socket.on("message", message => {
-    console.log(message);
     // view message in client
-    outputMessage(message);
+    outputMessage(message);    
 });
 
 
@@ -17,22 +27,20 @@ const outputMessage = (message) => {
 
     const text = document.createElement("p");
     text.classList.add('text');
-    text.textContent = message;
+    text.textContent = message.text;
 
     
 
     const username = document.createElement('p');
     username.classList.add("meta");
-    username.textContent = "Bob ";
+    username.textContent = message.username + " ";
     const timestamp = document.createElement("span");
-    timestamp.textContent = "9:55pm";
+    timestamp.textContent = message.time;
     username.appendChild(timestamp);
 
     messageDiv.appendChild(username);
     messageDiv.appendChild(text);
     
-
-    const chat_messages = document.querySelector(".chat-messages");
 
     chat_messages.appendChild(messageDiv);
 }
@@ -40,10 +48,17 @@ const outputMessage = (message) => {
 // send message
 chatForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const chatMessage = document.querySelector("#msg").value;
+    
     
     // send message to the server
-    socket.emit("chatMessage", chatMessage);
-   
+    socket.emit("chatMessage", chatMessage.value);
+
+    // auto scrolls
+    chat_messages.scrollTop = chat_messages.scrollHeight;
+
+    chatMessage.value = "";
 });
+
+// display room name
+document.getElementById("room-name").textContent = room;
 
