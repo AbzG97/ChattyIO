@@ -3,14 +3,10 @@ const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
 const message = require("./message");
-
-
-
-// url.parse(req.url,true).query
-
 const app = express();
 const server = http.createServer(app);
 const chatServer = socketio(server);
+
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
@@ -51,6 +47,12 @@ chatServer.on("connection", socket => {
             chatServer.to(user.room).emit("message", message.formatMessage(user.username, msg));
         });
 
+        // send user and room info 
+        chatServer.to(user.room).emit("roomUsers", {
+            room: user.room,
+            users: users.filter(state => user.room === state.room)
+        });
+
         // runs when a client disconnect
         socket.on("disconnect", () => {
             chatServer.emit("message", 
@@ -59,6 +61,11 @@ chatServer.on("connection", socket => {
                 const filtered = users.filter((user) => socket.id !== user.id);
                 users = filtered;
                 console.log(users);
+                chatServer.to(user.room).emit("roomUsers", {
+                    room: user.room,
+                    users: users
+                });
+        
         });
     });
    

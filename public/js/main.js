@@ -13,6 +13,12 @@ const {username, room} = Qs.parse(location.search, {
 // join chat room
 socket.emit("join", {username, room});
 
+// get room and current users in that room
+socket.on("roomUsers", ({room, users}) => {
+    outputRoom(room);
+    outputCurrentUsers(users);
+});
+
 // get the message from server to be displayed in client
 socket.on("message", message => {
     // view message in client
@@ -60,5 +66,13 @@ chatForm.addEventListener("submit", (e) => {
 });
 
 // display room name
-document.getElementById("room-name").textContent = room;
+const outputRoom = (room) => {
+    document.getElementById("room-name").textContent = room;
+}
+
+// display current users
+const outputCurrentUsers = (users) => {
+    document.getElementById("users").innerHTML = `
+        ${users.map(user => `<li>${user.username}</li>`).join("")}`
+}
 
