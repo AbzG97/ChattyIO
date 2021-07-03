@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
 :root {
 	--dark-color-a: #667aff;
 	--dark-color-b: #7386ff;
@@ -17,7 +17,7 @@
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Rajdhani', sans-serif;
 	font-size: 16px;
 	background: var(--light-color);
 	margin: 20px;
@@ -68,10 +68,20 @@ form {
 
 }
 
+form > .form-control > #username {
+	font-family: 'Rajdhani', sans-serif;
+	background-color: transparent;
+}
+
+form > .input-field > #room {
+	font-family: 'Rajdhani', sans-serif;
+}
+
 form > button {
     align-self: center;
     margin-top: 2rem;
     width: 50%;
+	font-family: 'Rajdhani', sans-serif;
 }
 
 
