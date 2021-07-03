@@ -4,20 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/style.css">
-  <title>ChatCord App</title>
+  <link rel="stylesheet" href="css/chat.css">
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  <title>ChattyIO</title>
 </head>
 <body>
   <div class="chat-container">
     <header class="chat-header">
-      <h1><i class="fas fa-smile"></i> ChatCord</h1>
-      <a href="index.html" class="btn">Leave Room</a>
+      <p><i class="material-icons">chat_bubble_outline</i> ChattyIO</p>
+      <a href="index.html" class="waves-effect waves-light btn">Leave Room</a>
     </header>
     <main class="chat-main">
       <div class="chat-sidebar">
-        <h3><i class="fas fa-comments"></i> Room Name:</h3>
+        <p><i class="fas fa-comments"></i> Room Name:</p>
         <h2 id="room-name"></h2>
-        <h3><i class="fas fa-users"></i> Users</h3>
+        <p><i class="fas fa-users"></i> Users</p>
         <ul id="users">
           
         </ul>
@@ -35,7 +45,7 @@
           required
           autocomplete="off"
         />
-        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <button class="btn waves-effect waves-light"><i class="fas fa-paper-plane"></i> Send</button>
       </form>
     </div>
   </div>
@@ -46,5 +56,10 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("select").formSelect();
+    });
+  </script>
 </body>
 </html>

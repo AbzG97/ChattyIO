@@ -3,6 +3,8 @@ const chat_messages = document.querySelector(".chat-messages");
 const chatMessage = document.querySelector("#msg");
 const socket = io();
 
+
+
 // get username and room from url
 const {username, room} = Qs.parse(location.search, {
     ignoreQueryPrefix: true
