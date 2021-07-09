@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+:root {
+	--dark-color-a: #667aff;
+	--dark-color-b: #7386ff;
+	--light-color: #e6e9ff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+    --teal-light: #4db6ac;
+    --teal-dark: #00796b;
+    --index-page-buttons: #9575cd;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 16px;
+	background: var(--light-color);
+	margin: 20px;
+}
+
+.join-container {
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    flex-direction: column;
+    max-width: 600px;
+    background-color: var(--teal-light);
+    margin: 80px auto;
+    height: 70vh;
+    position: relative;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.join-header {
+    text-align: center;
+    background-color: var(--teal-light);
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    top: 0;
+    position: absolute;
+    padding: 1rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.join-header > p > i {
+    font-size: 3rem;
+}
+
+form {
+    margin-top: 5rem;
+    padding: 4rem;
+    height: 100%;
+    width: 100%;
+    background-color: var(--index-page-buttons);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+
+}
+
+form > .form-control > #username {
+	font-family: 'Rajdhani', sans-serif;
+	background-color: transparent;
+}
+
+form > .input-field > #room {
+	font-family: 'Rajdhani', sans-serif;
+}
+
+form > button {
+    align-self: center;
+    margin-top: 2rem;
+    width: 50%;
+	font-family: 'Rajdhani', sans-serif;
+}
+
+
+
+/* .join-container {
+	max-width: 500px;
+	margin: 80px auto;
+	color: #fff;
+}
+
+.join-header {
+	text-align: center;
+	padding: 20px;
+	background: var(--dark-color-a);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.join-main {
+	padding: 30px 40px;
+	background: var(--dark-color-b);
+}
+
+.join-main p {
+	margin-bottom: 20px;
+}
+
+.join-main .form-control {
+	margin-bottom: 20px;
+}
+
+.join-main label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join-main input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main select {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main .btn {
+	margin-top: 20px;
+	width: 100%;
+}
+
+@media (max-width: 700px) {
+	.chat-main {
+		display: block;
+	}
+
+	.chat-sidebar {
+		display: none;
+	}
+} */
