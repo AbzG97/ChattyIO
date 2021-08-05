@@ -5,11 +5,17 @@ const socketio = require("socket.io");
 const message = require("./message");
 const app = express();
 const server = http.createServer(app);
-const chatServer = socketio(server);
+const PORT = process.env.PORT || 3001;
+const cors = require("cors")
+const chatServer = socketio(server, {
+    cors: true,
+    origins:[`localhost:${PORT}`]
+});
 
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 
 let users = [];
@@ -21,10 +27,12 @@ chatServer.on("connection", socket => {
 
     // join room 
     socket.on("join", ({username, room}) => {
+        console.log("joined room");
         const id = socket.id;
 
         const user  = {id, username, room};
         users.push(user);
+        console.log(user);
 
         // join the user to a room
         socket.join(user.room);
@@ -44,6 +52,7 @@ chatServer.on("connection", socket => {
         // listen to the client for messages
         socket.on("chatMessage", msg => {
             // emit the chat message sent from client to everyone
+            console.log(msg);
             chatServer.to(user.room).emit("message", message.formatMessage(user.username, msg));
         });
 
@@ -73,6 +82,6 @@ chatServer.on("connection", socket => {
 
 
 
-const PORT = process.env.PORT || 3001;
+
 
 server.listen(PORT,() => console.log(`Server running on port ${PORT}`));
