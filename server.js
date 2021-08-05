@@ -21,6 +21,7 @@ chatServer.on("connection", socket => {
 
     // join room 
     socket.on("join", ({username, room}) => {
+        console.log(`${username} has joined`);
         const id = socket.id;
 
         const user  = {id, username, room};
